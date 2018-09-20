@@ -1,0 +1,33 @@
+{
+  "name": "Notible",
+  "version": "1.0.0",
+  "repository": "https://github.com/nghminh163/Notible.git",
+  "author": "Nguyễn Hoàng Minh <nghminh163@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node",
+    "build": "babel ./ -d dist",
+    "serve": "node dist/index.js",
+    "test": "mocha --require babel-register --exit",
+    "postinstall": "npm run build"
+
+  }
+}

@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 import {
     runServer
-} from "./server/server";
+} from "./src/app";
 
 dotenv.config()
 

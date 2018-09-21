@@ -7,7 +7,7 @@ Mình tên là Minh, đây là lần thứ 3-4 viết chatbot về chủ đề c
 
 ## Tính năng
 
-- [ ] Ghép cặp mọi người -> sure rồi
+- [] Ghép cặp mọi người -> sure rồi
 - [ ] Cho phép lựa chọn theo giới tính -> Cực kì cần thiết :))
 - [ ] Tích hợp tính năng thanh lọc cộng đồng
 - [ ] Giao diện Admin quản lí

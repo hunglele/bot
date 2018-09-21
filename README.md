@@ -1,4 +1,4 @@
-# Gotible - Golang Chatible
+# Notible - NodeJs Chatible
 
 
 ## Đôi điều mở đầu

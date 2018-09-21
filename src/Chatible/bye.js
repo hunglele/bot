@@ -1,5 +1,7 @@
 import mongodb from 'mongodb'
 import Chatfuel from '../api/Chatfuel'
+import cache from 'memory-cache';
+
 const MongoClient = mongodb.MongoClient;
 
 const ChatfuelAPI = new Chatfuel();
@@ -32,6 +34,8 @@ export default (id1, id2) => {
                         },
                         (err) => {
                             if (err) throw err;
+                            cache.del(id1);
+                            cache.del(id2);
                             return Promise.all([ChatfuelAPI.sendText(id1, "Bạn đã kết thúc cuộc trò chuyện với đối phương"), ChatfuelAPI.sendText(id2, "Đối phương đã kết thúc cuộc trò chuyện với bạn")]).then(() => {
                                 db.close(null, () => {
                                     resolve(true)

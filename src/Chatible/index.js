@@ -14,7 +14,7 @@ const ChatfuelAPI = new Chatfuel();
 export default async (user) => {
     const idCouple = cache.get(user.senderId)
     if (idCouple) {
-        if (user.msg === "pp") return await bye(user.senderId, userDb.idCouple)
+        if (user.msg === "pp") return await bye(user.senderId, idCouple)
         return await ChatfuelAPI.sendText(idCouple, user.msg);
     }
     const userDb = await findUser(user.senderId);

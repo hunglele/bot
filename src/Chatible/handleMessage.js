@@ -2,16 +2,16 @@ import url from 'url';
 import Chatfuel from '../api/Chatfuel'
 
 function isImage(msg) {
-    const url = url.parse(msg);
-    if (url.protocol !== 'https:') return false;
-    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".jpg") && url.pathname.endsWith(".jpeg") && url.pathname.endsWith(".gif")) return true
+    const urlparse = url.parse(msg);
+    if (urlparse.protocol !== 'https:') return false;
+    if (urlparse.hostname.includes("fbcdn.net") && urlparse.pathname.endsWith(".jpg") && urlparse.pathname.endsWith(".jpeg") && urlparse.pathname.endsWith(".gif")) return true
     return false;
 }
 
 function isVoice(msg) {
-    const url = url.parse(msg);
-    if (url.protocol !== 'https:') return false;
-    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".mp4") && url.pathname.endsWith(".acc")) return url.split(" ")
+    const urlparse = url.parse(msg);
+    if (urlparse.protocol !== 'https:') return false;
+    if (urlparse.hostname.includes("fbcdn.net") && urlparse.pathname.endsWith(".mp4") && urlparse.pathname.endsWith(".acc")) return true
     return false;
 }
 

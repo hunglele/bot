@@ -21,4 +21,24 @@ export default class ChatfuelAPI {
         });
     });
   }
+  sendImage(senderId, payload) {
+    return new Promise(resolve => {
+      axios
+        .post(
+          `https://api.chatfuel.com/bots/${
+            process.env.BOT_ID
+          }/users/${
+            senderId
+          }/send?chatfuel_token=${
+            process.env.TOKEN_CHATFUEL
+          }&chatfuel_block_id=${process.env.IMAGE_BLOCK}`, {
+            urlImage: payload
+          }
+        )
+        .then(res => resolve(res))
+        .catch(err => {
+          if (err) throw err
+        });
+    });
+  }
 }

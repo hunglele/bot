@@ -3,7 +3,7 @@ import Chatfuel from '../api/Chatfuel'
 function isImage(msg) {
     const url = new URL(msg);
     if (url.protocol !== 'https:') return false;
-    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".jpg") && url.pathname.endsWith(".jped") && url.pathname.endsWith(".gift")) return true
+    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".jpg") && url.pathname.endsWith(".jpeg") && url.pathname.endsWith(".gift")) return true
     return false;
 }
 
@@ -14,12 +14,12 @@ function isVoice(msg) {
     return false;
 }
 
-export default (senderId, msg) => {
+export default async (senderId, msg) => {
     if (isImage(msg)) {
         msg.split(" ").forEach(async (v) => {
             return await Chatfuel.sendImage(senderId, v)
         })
     } else {
-        return Chatfuel.sendText(senderId, msg);
+        return await Chatfuel.sendText(senderId, msg);
     }
 }

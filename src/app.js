@@ -2,6 +2,8 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 import Chatible from './routes/Chatible'
+import GetMessage from './routes/get'
+
 
 const app = express();
 
@@ -13,6 +15,8 @@ app.use(bodyParser.urlencoded({
 app.get('/ping', (_, res) => res.send("pong"))
 
 app.use('/chatible', Chatible)
+app.use('/get', GetMessage)
+
 
 function runServer(port = process.env.PORT || 3000, done) {
     /* 3000 is port default */

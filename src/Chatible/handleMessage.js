@@ -6,7 +6,7 @@ const ChatfuelAPI = new Chatfuel();
 function isImage(msg) {
     const urlparse = url.parse(msg);
     if (urlparse.protocol !== 'https:') return false;
-    if (urlparse.hostname.includes("fbcdn.net") && urlparse.pathname.endsWith(".jpg") && urlparse.pathname.endsWith(".jpeg") && urlparse.pathname.endsWith(".gif")) return true
+    if (urlparse.hostname.includes("fbcdn.net") && (urlparse.pathname.endsWith(".png") || urlparse.pathname.endsWith(".jpg") || urlparse.pathname.endsWith(".jpeg") || urlparse.pathname.endsWith(".gif"))) return true
     return false;
 }
 

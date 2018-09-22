@@ -21,8 +21,4 @@ export default class ChatfuelAPI {
         });
     });
   }
-  sendImages() {}
-  sendVideo() {}
-  sendVoice() {}
-  sendAttachment() {}
 }

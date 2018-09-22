@@ -31,6 +31,7 @@ export default async (user) => {
     } else if (userDb.idCouple) {
         if (user.msg.toLowerCase() === "pp") return await bye(user.senderId, userDb.idCouple)
         cache.put(user.senderId, userDb.idCouple)
+        console.log(user.msg);
         return await ChatfuelAPI.sendText(userDb.idCouple, user.msg);
     }
 }

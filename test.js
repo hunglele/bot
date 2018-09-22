@@ -14,7 +14,7 @@ MongoClient.connect(process.env.MONGODB_URI, {
                 if (temp.includes(obj[i]._id)) continue;
                 const user2 = await findUser2(obj[i]._id, obj[i].favorite, obj[i].gender)
                 temp.push(user2)
-                pair(obj[i]._id, user2);
+                await pair(obj[i]._id, user2);
             }
         }
     })

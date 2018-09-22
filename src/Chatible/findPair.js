@@ -49,7 +49,7 @@ function findUser2(senderId, senderFav, senderGen) {
                 })
             } else {
                 db.db(process.env.MONGODB_NAME || process.env.MONGODB_URI.split("/")[3]).collection('users').find({
-                    $and: [{
+                    $or: [{
                         favorite: senderGen
                     }, {
                         favorite: "any"
@@ -63,7 +63,7 @@ function findUser2(senderId, senderFav, senderGen) {
                     if (err) throw err;
                     if (obj.length === 0) return senderId
                     else {
-                        return resolve(obj[Math.floor(Math.random() * obj.length - 1)]._id)
+                        return resolve(obj[Math.floor(Math.random() * obj.length)]._id)
                     }
                 })
             }

@@ -2,7 +2,9 @@ import findUser from './findUser'
 import insertUser from './insertUser'
 import userRequest from './userRequest'
 import findPair from './findPair'
-import bye from './bye'
+import bye, {
+    byeOne
+} from './bye'
 import handleMessage from './handleMessage';
 
 import Chatfuel from '../api/Chatfuel'
@@ -27,6 +29,7 @@ export default async (user) => {
             return Promise.all([findPair(), ChatfuelAPI.sendText(user.senderId, "Hih chờ một chút để mình gửi yêu cầu tìm bạn nhé")]).then(() => {})
         })
     } else if (userDb.status === 1) {
+        if (user.msg.toLowerCase() === "pp") return await byeOne(user.senderId)
         return await ChatfuelAPI.sendText(user.senderId, "Chờ chút. Yêu cầu của bạn chắc bây giờ không có ai cạ. Thử huỷ đi chọn lại hoặc chờ đợi nhé")
     } else if (userDb.idCouple) {
         if (user.msg.toLowerCase() === "pp") return await bye(user.senderId, userDb.idCouple)

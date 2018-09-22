@@ -3,7 +3,7 @@ import insertUser from './insertUser'
 import userRequest from './userRequest'
 import findPair from './findPair'
 import bye from './bye'
-
+import handleMessage from './handleMessage';
 
 import Chatfuel from '../api/Chatfuel'
 
@@ -15,7 +15,7 @@ export default async (user) => {
     const idCouple = cache.get(user.senderId)
     if (idCouple) {
         if (user.msg.toLowerCase() === "pp") return await bye(user.senderId, idCouple)
-        return await ChatfuelAPI.sendText(idCouple, user.msg);
+        return handleMessage(idCouple, user.msg);
     }
     const userDb = await findUser(user.senderId);
     if (!userDb) {
@@ -31,6 +31,6 @@ export default async (user) => {
     } else if (userDb.idCouple) {
         if (user.msg.toLowerCase() === "pp") return await bye(user.senderId, userDb.idCouple)
         cache.put(user.senderId, userDb.idCouple)
-        return await ChatfuelAPI.sendText(userDb.idCouple, user.msg);
+        return handleMessage(userDb.idCouple, user.msg);
     }
 }

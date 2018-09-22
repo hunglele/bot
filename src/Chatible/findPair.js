@@ -14,8 +14,13 @@ export default () => {
             }).toArray(async (err, obj) => {
                 if (err) throw err;
                 if (obj.length > 1) {
-                    for (var i = 0; i < obj.length; i++) {
-                        pair(obj[i]._id, await (findUser2(obj[i]._id, obj[i].favorite, obj[i].gender)));
+                    const temp = [];
+                    for (let i = 0; i < obj.length; i++) {
+                        if (temp.includes(obj[i]._id)) continue;
+                        const user2 = await findUser2(obj[i]._id, obj[i].favorite, obj[i].gender)
+                        temp.push(user2)
+                        if (obj[i]._id != user2) await pair(obj[i]._id, user2);
+
                     }
                 }
             })

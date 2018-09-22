@@ -1,14 +1,15 @@
+import url from 'url';
 import Chatfuel from '../api/Chatfuel'
 
 function isImage(msg) {
-    const url = new URL(msg);
+    const url = url.parse(msg);
     if (url.protocol !== 'https:') return false;
-    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".jpg") && url.pathname.endsWith(".jpeg") && url.pathname.endsWith(".gift")) return true
+    if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".jpg") && url.pathname.endsWith(".jpeg") && url.pathname.endsWith(".gif")) return true
     return false;
 }
 
 function isVoice(msg) {
-    const url = new URL(msg);
+    const url = url.parse(msg);
     if (url.protocol !== 'https:') return false;
     if (url.hostname.includes("fbcdn.net") && url.pathname.endsWith(".mp4") && url.pathname.endsWith(".acc")) return url.split(" ")
     return false;

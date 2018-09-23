@@ -14,8 +14,13 @@ export default () => {
             }).toArray(async (err, obj) => {
                 if (err) throw err;
                 if (obj.length > 1) {
-                    for (var i = 0; i < obj.length; i++) {
-                        pair(obj[i]._id, await (findUser2(obj[i]._id, obj[i].favorite, obj[i].gender)));
+                    const temp = [];
+                    for (let i = 0; i < obj.length; i++) {
+                        if (temp.includes(obj[i]._id)) continue;
+                        const user2 = await findUser2(obj[i]._id, obj[i].favorite, obj[i].gender)
+                        temp.push(user2)
+                        if (obj[i]._id != user2) await pair(obj[i]._id, user2);
+
                     }
                 }
             })
@@ -49,7 +54,7 @@ function findUser2(senderId, senderFav, senderGen) {
                 })
             } else {
                 db.db(process.env.MONGODB_NAME || process.env.MONGODB_URI.split("/")[3]).collection('users').find({
-                    $and: [{
+                    $or: [{
                         favorite: senderGen
                     }, {
                         favorite: "any"
@@ -63,7 +68,7 @@ function findUser2(senderId, senderFav, senderGen) {
                     if (err) throw err;
                     if (obj.length === 0) return senderId
                     else {
-                        return resolve(obj[Math.floor(Math.random() * obj.length - 1)]._id)
+                        return resolve(obj[Math.floor(Math.random() * obj.length)]._id)
                     }
                 })
             }

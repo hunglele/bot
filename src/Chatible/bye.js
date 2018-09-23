@@ -46,3 +46,30 @@ export default (id1, id2) => {
         })
     })
 }
+
+export function byeOne(senderId) {
+    return new Promise(resolve => {
+        MongoClient.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true
+        }, (err, db) => {
+            if (err) throw err;
+            db.db(process.env.MONGODB_NAME || process.env.MONGODB_URI.split("/")[3]).collection('users').updateOne({
+                    _id: senderId
+                }, {
+                    "$set": {
+                        "status": 0,
+                        "timestamp": null,
+                        "idCouple": null
+                    }
+                },
+                (err) => {
+                    if (err) throw err;
+                    ChatfuelAPI.sendText(senderId, "Bạn đã huỷ tìm bạn").then(() => {
+                        db.close(null, () => {
+                            resolve(true)
+                        })
+                    })
+                })
+        })
+    })
+}

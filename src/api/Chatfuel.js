@@ -41,4 +41,24 @@ export default class ChatfuelAPI {
         });
     });
   }
+  sendVoice(senderId, payload) {
+    return new Promise(resolve => {
+      axios
+        .post(
+          `https://api.chatfuel.com/bots/${
+            process.env.BOT_ID
+          }/users/${
+            senderId
+          }/send?chatfuel_token=${
+            process.env.TOKEN_CHATFUEL
+          }&chatfuel_block_id=${process.env.VOICE_BLOCK}`, {
+            urlVoice: payload
+          }
+        )
+        .then(res => resolve(res))
+        .catch(err => {
+          if (err) throw err
+        });
+    });
+  }
 }

@@ -17,4 +17,16 @@ Router.get('/image', (req, res) => {
     })
 });
 
+Router.get('/audio', (req, res) => {
+    res.json({
+        "messages": [{
+            "attachment": {
+                "type": "audio",
+                "payload": {
+                    "url": req.query.payload
+                }
+            }
+        }]
+    })
+});
 export default Router;

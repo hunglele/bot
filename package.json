@@ -5,7 +5,7 @@
   "author": "Nguyễn Hoàng Minh <nghminh163@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
